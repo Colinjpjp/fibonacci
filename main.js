@@ -11,20 +11,23 @@ function fibonacci() {
     num0 = num1;
     num1 = num2;
   }
-  function createElement() {
-    const newElement = document.createElement("p");
-    newElement.setAttribute("class", "fib");
-    newElement.textContent = array;
-    document.querySelector(".example").appendChild(newElement);
+  const myList = document.querySelector(".example");
+  function addElements(list) {
+    return function (elements) {
+      elements.forEach((element) => {
+        list.innerHTML += `<li>${element}</li>`;
+      });
+    };
   }
-  createElement();
+
+  const addElementsToMyList = addElements(myList);
+  addElementsToMyList(array);
 }
 
 function validation() {
   const value2 = parseInt(number.value);
   if (typeof value2 !== "number") throw new Error("No es un numero!");
   if (value2 === 0) throw new Error("Ponga un numero mayor que cero");
-  if (value2 > 200) throw new Error("ponga un numero menor que '200'");
   return fibonacci();
 }
 

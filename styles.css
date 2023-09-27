@@ -48,8 +48,8 @@ input::placeholder{
     }
 }
 
-.fib{
-    overflow: hidden;
-    width: 100%;
-    text-overflow: ellipsis;
+.example{
+    list-style: none;
+    color: red;
+    padding: 0px;
 }
