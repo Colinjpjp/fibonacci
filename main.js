@@ -1,5 +1,6 @@
 const number = document.querySelector(".input");
 const button = document.querySelector(".button");
+const button2 = document.querySelector(".clear");
 
 function fibonacci() {
   let num0 = 0;
@@ -15,7 +16,7 @@ function fibonacci() {
   function addElements(list) {
     return function (elements) {
       elements.forEach((element) => {
-        list.innerHTML += `<li>${element}</li>`;
+        list.innerHTML += `<li class="name">${element}</li>`;
       });
     };
   }
@@ -27,8 +28,16 @@ function fibonacci() {
 function validation() {
   const value2 = parseInt(number.value);
   if (typeof value2 !== "number") throw new Error("No es un numero!");
-  if (value2 === 0) throw new Error("Ponga un numero mayor que cero");
   return fibonacci();
 }
 
 button.onclick = validation;
+
+function clear() {
+  const li = document.querySelectorAll(".name");
+  for (let j = 0; j < parseInt(number.value); j++) {
+    li[j].outerHTML = "";
+  }
+}
+
+button2.onclick = clear;

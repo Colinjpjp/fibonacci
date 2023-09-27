@@ -35,7 +35,7 @@ input::placeholder{
     color: white;
 }
 
-.button{
+.button,.clear{
     color: white;
     background-color: black;
     border-radius: 0px;
@@ -52,4 +52,10 @@ input::placeholder{
     list-style: none;
     color: red;
     padding: 0px;
+}
+
+.name{
+    list-style:none;
+    color: red;
+    padding: 0;
 }
