@@ -28,6 +28,8 @@ function fibonacci() {
 function validation() {
   const value2 = parseInt(number.value);
   if (typeof value2 !== "number") throw new Error("No es un numero!");
+  if (parseInt(number.value) > 1000)
+    throw new Error("Pon un Numero menor que 1000");
   return fibonacci();
 }
 
@@ -35,8 +37,8 @@ button.onclick = validation;
 
 function clear() {
   const li = document.querySelectorAll(".name");
-  for (let j = 0; j < parseInt(number.value); j++) {
-    li[j].outerHTML = "";
+  for (let j = 0; j < li.length; j++) {
+    li[j].textContent = "";
   }
 }
 
