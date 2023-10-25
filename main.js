@@ -2,11 +2,11 @@ const number = document.querySelector(".input");
 const button = document.querySelector(".button");
 const button2 = document.querySelector(".clear");
 
-function fibonacci() {
+function fibonacci(it) {
   let num0 = 0;
   let num1 = 1;
   const array = [num0, num1];
-  for (let i = 2; i < parseInt(number.value); i++) {
+  for (let i = 2; i < it; i++) {
     let num2 = num0 + num1;
     array.push(num2);
     num0 = num1;
@@ -25,21 +25,47 @@ function fibonacci() {
   addElementsToMyList(array);
 }
 
-function validation() {
-  const value2 = parseInt(number.value);
-  if (typeof value2 !== "number") throw new Error("No es un numero!");
-  if (parseInt(number.value) > 1000)
-    throw new Error("Pon un Numero menor que 1000");
-  return fibonacci();
+function fibonacciNegativo(it) {
+  let num0 = 0;
+  let num1 = -1;
+  const array = [num0, num1];
+  for (let i = -2; i > it; i--) {
+    let num2 = num0 + num1;
+    array.push(num2);
+    num0 = num1;
+    num1 = num2;
+  }
+  const myList = document.querySelector(".example");
+  function addElements(list) {
+    return function (elements) {
+      elements.forEach((element) => {
+        list.innerHTML += `<li class="name">${element}</li>`;
+      });
+    };
+  }
+
+  const addElementsToMyList = addElements(myList);
+  addElementsToMyList(array);
 }
 
-button.onclick = validation;
+function validator(num) {
+  if (num > 1000) throw new Error("Muy alto");
+  if (num < -1000) throw new Error("Muy bajo");
+  if (num === NaN) throw new Error("No es un numero");
+  if (num === undefined) throw new Error("No esta definido");
+  if (num < 0) return fibonacciNegativo(Number(number.value));
+  return fibonacci(Number(number.value));
+}
+button.addEventListener("click", () => {
+  validator(Number(number.value));
+});
 
-function clear() {
-  const li = document.querySelectorAll(".name");
-  for (let j = 0; j < li.length; j++) {
-    li[j].textContent = "";
+function clearList(document) {
+  for (let i = 0; i < document.length; i++) {
+    document[i].innerHTML = "";
   }
 }
 
-button2.onclick = clear;
+button2.onclick = () => {
+  clearList(document.querySelectorAll(".name"));
+};
